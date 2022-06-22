@@ -1,0 +1,14 @@
+.cartNumber {
+    height:30px;
+    width:30px;
+    background-color:rgba(137, 15, 6, 0.9);
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    color:#ffffff;
+    position:relative;
+    top:20px;
+    right:25px;
+    border-radius:50%;
+    font-size: 18px;
+}
