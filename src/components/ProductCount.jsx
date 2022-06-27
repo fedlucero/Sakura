@@ -1,21 +1,23 @@
 import React, { useState } from 'react'
-import { Container } from 'react-bulma-components'
+import { Container, Button } from 'react-bulma-components'
 // import './ItemCount.css'
 
-const ProductCount = ({ inicial }) => {
-    const [count, setCount] = useState(inicial)
-
-    const sumar = () => { setCount(count + 1) }
+const ProductCount = ({ quantity, setQuantity, addToCart }) => {
+    const sumar = () => { setQuantity(quantity + 1) }
     const restar = () => {
-        count > inicial ? setCount(count - 1) : alert('No puedes quitar más productos')
+        quantity > 1 ? setQuantity(quantity - 1) : alert('No puedes quitar más productos')
     }
 
     return (
-        <Container alignItems='center'>
-            <button onClick={sumar}>+</button>
-            <h2>{count}</h2>
-            <button onClick={restar}>-</button>
-        </Container>
+        <>
+            <Container m={3} display='flex' flexWrap='wrap' justifyContent='center' alignItems='center'>
+                <Button onClick={sumar}>+</Button>
+                <p style={{width: '75px'}}>{quantity}</p>
+                <Button onClick={restar}>-</Button>
+            </Container>
+            <Button onClick={() => {addToCart()}}  color="info">Agregar al Carrito</Button>
+        </>
+
     )
 }
 
