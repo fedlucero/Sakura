@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
 import { Container, Button } from 'react-bulma-components'
-// import './ItemCount.css'
+
 
 const ProductCount = ({ quantity, setQuantity, addToCart }) => {
     const sumar = () => { setQuantity(quantity + 1) }
