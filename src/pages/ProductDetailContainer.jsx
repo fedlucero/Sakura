@@ -10,7 +10,7 @@ export default function ProductDetailContainer() {
         fetch('../products.json')
         .then( res => res.json())
         .then( data => {
-            const prodFound = data.find( prod => prod.id == id)
+            const prodFound = data.find( prod => prod.id === id)
             setProduct(prodFound);
         })
         .catch( error => console.error( error ))
