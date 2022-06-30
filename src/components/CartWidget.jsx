@@ -1,11 +1,15 @@
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import 'bulma/css/bulma.min.css';
 import { Icon } from "react-bulma-components";
+import {useContext} from 'react';
+import {CartContext} from '../contexts/CartContext';
 import './CartWidget.css';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCartShopping} from '@fortawesome/free-solid-svg-icons';
 
 
-export default function CartWidget({quantity}) {
+export default function CartWidget() {
+    const {getItemQty} = useContext(CartContext)
+
 	return (
 		<>
             <Icon
@@ -15,7 +19,7 @@ export default function CartWidget({quantity}) {
             >
                 <FontAwesomeIcon icon={faCartShopping} />
             </Icon>
-			<span className='cartNumber'>{quantity}</span>
+			{getItemQty() <= 0 ? '' : <span className='cartNumber'>{getItemQty()}</span>}
 		</>
 	);
 }
