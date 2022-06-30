@@ -1,20 +1,26 @@
-import { useState } from 'react';
 import 'bulma/css/bulma.min.css';
+import { useContext, useState } from 'react';
 import { Button, Columns, Container, Heading, Image, Section } from 'react-bulma-components';
-import ProductCount from './ProductCount';
 import { Link } from 'react-router-dom';
+import ProductCount from './ProductCount';
+import { CartContext } from '../contexts/CartContext';
 
 const ProductDetail = ({product}) => {
     const { id, title, description, regularPrice, imagen} = product
 
-    const [quantity, setQuantity] = useState(1);
-    const [shown, setShown] = useState(true);
+  
+    const [quantity, setQuantity] = useState(1)
+    const [shown, setShown] = useState(true)
+
+    const {isInCart, addItem} = useContext(CartContext)
 
     const addToCart = () => {
-        alert(`Añadirás ${quantity} productos`);
-        setShown(false);
-        // isInCart()
+        alert(`Añadirás ${quantity} productos`)
+        setShown(false)
+        isInCart(id)
+        addItem(product, quantity)
     }
+
 
     return (
         <Section>
@@ -26,7 +32,7 @@ const ProductDetail = ({product}) => {
                         <p>{description}</p>
                     </Columns.Column>
                     <Columns.Column size={5}>
-                        <Image src='http://bulma.io/images/placeholders/1280x960.png' alt={"imagen_"+id}/>
+                        <Image src={imagen} alt={"imagen_"+id}/>
                     </Columns.Column>
                     <Columns.Column size={4} textAlign='center'>
                         <Heading subtitle>$ {regularPrice}.00</Heading>
